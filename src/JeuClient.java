@@ -2,12 +2,13 @@
  * Gestion du jeu côté client
  *
  */
-public class JeuClient extends Jeu {
+public abstract class JeuClient extends Jeu {
 	
 	/**
 	 * Controleur
 	 */
 	public JeuClient() {
+	
 	}
 	
 	@Override
@@ -16,6 +17,10 @@ public class JeuClient extends Jeu {
 
 	@Override
 	public void reception() {
+	}
+	
+	@Override
+	public void deconnexion() {
 	}
 	
 	/**
