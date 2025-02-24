@@ -67,6 +67,7 @@ public interface Global {
 	 * Chemin de l'image du mur
 	 */
 	String MUR = CHEMINMURS+"mur.gif";
+	
 	/**
 	 * état marche du personnage
 	 */
@@ -88,11 +89,11 @@ public interface Global {
 	 */
 	String CONNEXION = "connexion";
 	/**
-	 * Message "réception" envoyé par la classe Connection
+	 * Message "reception" envoyé par la classe Connection
 	 */
 	String RECEPTION = "reception";
 	/**
-	 * Message "déconnexion" envoyé par la classe Connection
+	 * Message "deconnexion" envoyé par la classe Connection
 	 */
 	String DECONNEXION = "deconnexion";
 	/**
@@ -111,4 +112,44 @@ public interface Global {
 	 * perte de points de vie lors d'une attaque
 	 */
 	int PERTE = 2 ; 
+	
+	/**
+	 * nombre de murs dans l'arène
+	 */
+	int NBMURS = 20;
+	
+	/**
+	 * hauteur d'un mur
+	 */
+	int HAUTEURMUR = 35;
+	
+	/**
+	 * largeur d'un mur
+	 */
+	int LARGEURMUR = 34;
+	
+	/**
+	 * hauteur de l'arène
+	 */
+	int HAUTEURARENE = 600;
+	
+	/**
+	 * largeur de l'arène
+	 */
+	int LARGEURARENE = 800;
+	
+	/**
+	 * Message "serveur" pour la création d'un serveur
+	 */
+	String SERVEUR = "serveur";
+	
+	/**
+	 * ordre pour ajouter un mur dans l'arène du serveur
+	 */
+	String AJOUTMUR = "ajout mur";
+	
+	/**
+	 * ordre pour ajouter le panel des murs dans l'arène du client
+	 */
+	String AJOUTPANELMURS = "ajout panel murs";
 }

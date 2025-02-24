@@ -37,10 +37,12 @@ public class JeuServeur extends Jeu implements Global {
 
 	@Override
 	public void reception(Connection connection, Object info) {
-		String [] infos = ((String)info).split("~");
+		String [] infos = ((String)info).split(STRINGSEPARE);
 		String ordre = infos[0];
 		switch(ordre) {
 		case "pseudo" :
+			// arrivée des informations d'un nouveau joueur
+			controle.evenementJeuServeur(AJOUTPANELMURS, connection);
 			String pseudo = infos[1];
 			int numPerso = Integer.parseInt(infos[2]);
 			this.lesJoueurs.get(connection).initPerso(pseudo, numPerso);
@@ -62,6 +64,10 @@ public class JeuServeur extends Jeu implements Global {
 	 * Génération des murs
 	 */
 	public void constructionMurs() {
+		for (int k = 0; k < NBMURS ; k++) {
+			this.lesMurs.add(new Mur());
+			this.controle.evenementJeuServeur(AJOUTMUR, lesMurs.get(lesMurs.size()-1).getjLabel());
+		}
 	}
 	
 }
