@@ -3,6 +3,8 @@ package modele;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
+import javax.swing.JLabel;
+
 import controleur.Controle;
 import controleur.Global;
 import outils.connexion.Connection;
@@ -32,7 +34,7 @@ public class JeuServeur extends Jeu implements Global {
 	
 	@Override
 	public void connexion(Connection connection) {
-		this.lesJoueurs.put(connection, new Joueur());
+		this.lesJoueurs.put(connection, new Joueur(this));
 	}
 
 	@Override
@@ -40,17 +42,22 @@ public class JeuServeur extends Jeu implements Global {
 		String [] infos = ((String)info).split(STRINGSEPARE);
 		String ordre = infos[0];
 		switch(ordre) {
-		case "pseudo" :
+		case PSEUDO :
 			// arrivée des informations d'un nouveau joueur
 			controle.evenementJeuServeur(AJOUTPANELMURS, connection);
 			String pseudo = infos[1];
 			int numPerso = Integer.parseInt(infos[2]);
-			this.lesJoueurs.get(connection).initPerso(pseudo, numPerso);
+			this.lesJoueurs.get(connection).initPerso(pseudo, numPerso, this.lesJoueurs.values(), this.lesMurs);
+				break;
 		}
 	}
 	
 	@Override
 	public void deconnexion() {
+	}
+	
+	public void ajoutJLabelJeuArene(JLabel jLabel) {
+		this.controle.evenementJeuServeur(AJOUTLABELJEU, jLabel);
 	}
 
 	/**
@@ -58,6 +65,15 @@ public class JeuServeur extends Jeu implements Global {
 	 * fais appel plusieurs fois à l'envoi de la classe Jeu
 	 */
 	public void envoi() {
+	}
+	
+	/**
+	 * Envoi du panel de jeu à tous les joueurs
+	 */
+	public void envoiJeuATous() {
+		for (Connection connection : this.lesJoueurs.keySet()) {
+			this.controle.evenementJeuServeur(MODIFPANELJEU, connection);
+		}
 	}
 
 	/**
@@ -69,5 +85,4 @@ public class JeuServeur extends Jeu implements Global {
 			this.controle.evenementJeuServeur(AJOUTMUR, lesMurs.get(lesMurs.size()-1).getjLabel());
 		}
 	}
-	
 }
