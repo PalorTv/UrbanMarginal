@@ -108,6 +108,7 @@ public class ChoixJoueur extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param Controle controle à insérer
 	 */
 	public ChoixJoueur(Controle controle) {
 		// Dimension de la frame en fonction de son contenu

@@ -58,6 +58,13 @@ public class Joueur extends Objet implements Global {
 	private int orientation ;
 	
 	/**
+	 * @return the pseudo
+	 */
+	public String getPseudo() {
+		return pseudo;
+	}
+	
+	/**
 	 * Constructeur : récupération de jeuServeur et initialisaton de certaines propriétés
 	 * @param jeuServeur instance de JeuServeur pour lui envoyer des informations
 	 */
@@ -96,6 +103,8 @@ public class Joueur extends Objet implements Global {
 
 	/**
 	 * Calcul de la première position aléatoire du joueur (sans chevaucher un autre joueur ou un mur)
+	 * @param lesJoueurs collection contenant tous les joueurs
+	 * @param lesMurs collection contenant les murs
 	 */
 	private void premierePosition(Collection<Joueur> lesJoueurs, ArrayList<Mur> lesMurs) {
 		jLabel.setBounds(0, 0, LARGEURPERSO, HAUTEURPERSO);
@@ -109,6 +118,8 @@ public class Joueur extends Objet implements Global {
 	
 	/**
 	 * Affiche le personnage et son message
+	 * @param etape Etape dans le mouvement du personnage
+	 * @param etat etat du personnage : "marche", "touche", "mort"
 	 */
 	public void affiche(String etat, int etape) {
 		// positionnement du personnage et affectation de la bonne image
@@ -137,7 +148,8 @@ public class Joueur extends Objet implements Global {
 
 	/**
 	 * Contrôle si le joueur touche un des autres joueurs
-	 * @return true si deux joueurs se touchent
+	 * @param lesJoueurs collection contenant tous les joueurs
+	 * @return true si le joueur touche un autre joueur
 	 */
 	private Boolean toucheJoueur(Collection<Joueur> lesJoueurs) {
 		for (Joueur unJoueur : lesJoueurs) {
@@ -153,8 +165,9 @@ public class Joueur extends Objet implements Global {
 	
 	/**
 	* Contrôle si le joueur touche un des murs
-	* @return true si un joueur touche un mur
-	*/
+	 * @param lesMurs collection contenant tous les murs
+	 * @return true si le joueur touche un mur
+	 */
 	private Boolean toucheMur(ArrayList<Mur> lesMurs) {
 		for (Mur unMur : lesMurs) {
 			if (super.toucheObjet(unMur)) {

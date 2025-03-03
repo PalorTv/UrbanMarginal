@@ -41,7 +41,9 @@ public class JeuClient extends Jeu implements Global {
 			} else {
 				// arrivée du panel de jeu
 				this.controle.evenementJeuClient(MODIFPANELJEU, info);
-			}
+				}
+		} else if (info instanceof String) {
+				this.controle.evenementJeuClient(MODIFTCHAT, info);
 		}
 	}
 	
@@ -52,7 +54,7 @@ public class JeuClient extends Jeu implements Global {
 	/**
 	 * Envoi d'une information vers le serveur
 	 * fais appel une fois à l'envoi dans la classe Jeu
-	 * @param string 
+	 * @param string information à envoyer au serveur
 	 */
 	public void envoi(String info) {
 		super.envoi(this.connection, info);
