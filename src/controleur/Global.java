@@ -149,6 +149,21 @@ public interface Global {
 	int LARGEURPERSO = 39;
 	
 	/**
+	 * hauteur du message
+	 */
+	int HAUTEURMESSAGE = 8;
+	
+	/**
+	 * largeur de la boule
+	 */
+	int LARGEURBOULE = 17;
+	
+	/**
+	 * hauteur de la boule
+	 */
+	int HAUTEURBOULE = 17;
+	
+	/**
 	 * orientation du personnage vers la gauche
 	 */
 	int GAUCHE = 0;
@@ -169,9 +184,14 @@ public interface Global {
 	int NBETAPESMARCHE = 4;
 	
 	/**
-	 * hauteur du message
+	 * nombre d'étapes (d'images) pour donner l'impression d'être touché
 	 */
-	int HAUTEURMESSAGE = 8;
+	int NBETAPESTOUCHE = 2;
+	
+	/**
+	 * nombre d'étapes (d'images) pour donner l'impresson de mourir
+	 */
+	int NBETAPESMORT = 2;
 	
 	/**
 	 * Message "serveur" pour la création d'un serveur
