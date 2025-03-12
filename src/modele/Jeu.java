@@ -30,7 +30,7 @@ public abstract class Jeu {
 	/**
 	 * Déconnexion de l'ordinateur distant
 	 */
-	public abstract void deconnexion() ;
+	public abstract void deconnexion(Connection connection) ;
 	
 	/**
 	 * Envoi d'une information vers un ordinateur distant
