@@ -14,6 +14,8 @@ import java.awt.Dimension;
 import javax.swing.SwingConstants;
 
 import controleur.Controle;
+import controleur.Global;
+import outils.son.Son;
 
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -23,12 +25,7 @@ import java.awt.Dimension;
  * @author emds
  *
  */
-public class ChoixJoueur extends JFrame {
-
-	/**
-	 * Nombre de personnages différents
-	 */
-	private static final int NBPERSOS = 3;
+public class ChoixJoueur extends JFrame implements Global {
 	
 	/**
 	 * Panel général
@@ -53,6 +50,10 @@ public class ChoixJoueur extends JFrame {
 	 * Numéro du personnage sélectionné
 	 */
 	private int numPerso;
+	private Son welcome;
+	private Son precedent;
+	private Son suivant;
+	private Son go;
 	
 	/**
 	 * Clic sur la flèche "précédent" pour afficher le personnage précédent
@@ -60,6 +61,7 @@ public class ChoixJoueur extends JFrame {
 	private void lblPrecedent_clic() {
 		numPerso = ((numPerso+1)%NBPERSOS)+1;
 		affichePerso();
+		precedent.play();
 	}
 	
 	/**
@@ -68,6 +70,7 @@ public class ChoixJoueur extends JFrame {
 	private void lblSuivant_clic() {
 		numPerso = ((numPerso+1)%NBPERSOS)+1;
 		affichePerso();
+		suivant.play();
 	}
 	
 	/**
@@ -81,13 +84,14 @@ public class ChoixJoueur extends JFrame {
 		} else {
 			
 			this.controle.evenementChoixJoueur(this.txtPseudo.getText(), numPerso);
+			go.play();
 		}
 	}
 	/**
 	 * Affichage du personnage correspondant au numéro numPerso
 	 */
 	private void affichePerso() {
-		String chemin = "personnages/perso"+this.numPerso+"marche"+1+"d"+1+".gif";
+		String chemin = CHEMINPERSONNAGES+PERSO+this.numPerso+MARCHE+1+"d"+1+EXTFICHIERPERSO;
 		URL resource = getClass().getClassLoader().getResource(chemin);
 		this.lblPersonnage.setIcon(new ImageIcon(resource));
 	}
@@ -190,8 +194,7 @@ public class ChoixJoueur extends JFrame {
 		
 		JLabel lblFond = new JLabel("");
 		lblFond.setBounds(0, 0, 400, 275);
-		String chemin = "fonds/fondchoix.jpg";
-		URL resource = getClass().getClassLoader().getResource(chemin);
+		URL resource = getClass().getClassLoader().getResource(FONDCHOIX);
 		lblFond.setIcon(new ImageIcon(resource));		
 		contentPane.add(lblFond);
 		
@@ -202,6 +205,12 @@ public class ChoixJoueur extends JFrame {
 		this.numPerso = 1;
 		this.affichePerso();
 		
+		// récupération des sons
+		precedent = new Son(getClass().getClassLoader().getResource(SONPRECEDENT));
+		suivant = new Son(getClass().getClassLoader().getResource(SONSUIVANT));
+		go = new Son(getClass().getClassLoader().getResource(SONGO));
+		welcome = new Son(getClass().getClassLoader().getResource(SONWELCOME));
+		welcome.play();
 		// positionnement sur la zone de saisie
 		txtPseudo.requestFocus();
 
